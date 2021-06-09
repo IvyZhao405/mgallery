@@ -91,6 +91,29 @@ public class XmlDataSource {
             reload(); //make sure data in memory is consistent.
         }
     }
+
+    public static void update(Painting painting){
+        SAXReader reader = new SAXReader();
+        Writer writer = null;
+        try {
+            Document document = reader.read(dataFile);
+            //Xpath /nodepath[@attributename=xx]
+            List<Node> nodes = document.selectNodes("/root/pain[@id=" + painting.getId() + "]");
+            if (nodes.size() == 0){
+                throw new RuntimeException("id=" + painting.getId() + "This ID doesn't exist");
+            }
+            Element p = (Element) nodes.get(0);
+            p.selectSingleNode("pname").setText(painting.getPname());
+            p.selectSingleNode("category").setText(painting.getCategory().toString());
+            p.selectSingleNode("price").setText(painting.getPrice().toString());
+            p.selectSingleNode("preview").setText(painting.getPreview());
+            p.selectSingleNode("description").setText(painting.getDescription());
+            writer = new OutputStreamWriter(new FileOutputStream(dataFile), "UTF-8");
+            document.write(writer);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public static void main(String[] args) {
 //        List<Painting> ps = XmlDataSource.getRawData();
         Painting p = new Painting();

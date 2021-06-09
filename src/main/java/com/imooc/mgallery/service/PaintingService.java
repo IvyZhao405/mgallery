@@ -35,6 +35,14 @@ public class PaintingService {
         paintingDao.create(painting);
     }
 
+    public Painting findById(Integer id){
+        Painting p = paintingDao.findById(id);
+        if (p==null) {
+            throw new RuntimeException("[id=" + id +"] painting doesn't exist");
+        }
+        return p;
+    }
+
     public static void main(String[] args) {
         PaintingService paintingService = new PaintingService();
         PageModel pageModel = paintingService.pagination(2, 6);
