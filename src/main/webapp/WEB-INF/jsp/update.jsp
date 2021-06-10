@@ -10,7 +10,6 @@
 <script type="text/javascript" src="js/validation.js"></script>
 <script type="text/javascript">
 	function checkSubmit(){
-		var result = true;
 		var r1 = checkEmpty("#pname","#errPname");
 		var r2 = checkCategory('#category', '#errCategory');
 		var r3 = checkPrice('#price', '#errPrice');
@@ -48,8 +47,7 @@
 		<fieldset>
 			<legend>作品更新</legend>
 			<form action="management?method=update" method="post"
-				autocomplete="off" enctype="multipart/form-data"
-				onsubmit = "return checkSubmit()">
+				  autocomplete="off" enctype="multipart/form-data" onsubmit="return checkSubmit()">
 				<ul class="ulform">
 					<li>
 						<span>油画名称</span>

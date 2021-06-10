@@ -43,6 +43,23 @@ public class PaintingService {
         return p;
     }
 
+    public void update(Painting newPainting,Integer isPreviewModified) {
+        //Update original data
+        Painting oldPainting = this.findById(newPainting.getId());
+        oldPainting.setPname(newPainting.getPname());
+        oldPainting.setCategory(newPainting.getCategory());
+        oldPainting.setPrice(newPainting.getPrice());
+        oldPainting.setDescription(newPainting.getDescription());
+        if(isPreviewModified == 1) {
+            oldPainting.setPreview(newPainting.getPreview());
+        }
+        paintingDao.update(oldPainting);
+    }
+
+    public void delete(Integer id) {
+        paintingDao.delete(id);
+    }
+
     public static void main(String[] args) {
         PaintingService paintingService = new PaintingService();
         PageModel pageModel = paintingService.pagination(2, 6);

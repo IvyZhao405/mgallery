@@ -3,7 +3,6 @@ package com.imooc.mgallery.dao;
 import com.imooc.mgallery.entity.Painting;
 import com.imooc.mgallery.utils.PageModel;
 import com.imooc.mgallery.utils.XmlDataSource;
-import sun.jvm.hotspot.debugger.Page;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,5 +50,12 @@ public class PaintingDao {
             }
         }
         return painting;
+    }
+    public void update(Painting painting) {
+        XmlDataSource.update(painting);
+    }
+
+    public void delete(Integer id) {
+        XmlDataSource.delete(id);
     }
 }

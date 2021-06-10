@@ -21,38 +21,37 @@
 			showConfirmButton: false
 		})
 	}
-	//删除数据
-	// function del(delObj){
-	// 	var id = $(delObj).attr("data-id");
-	// 	var pname = $(delObj).attr("data-pname");
-	// 	var preview = $(delObj).attr("data-preview");
-	// 	Swal.fire({
-	// 		title : "确定要删除[" + pname + "]油画吗?",
-	// 		html : "<img src='" + preview + "' style='width:361px;height:240px'>",
-	// 		showCancelButton: true,
-	// 		confirmButtonText: "是",
-	// 		cancelButtonText: "否"
-	// 	}).then(function(result){
-	// 		if(result.value==true){
-	// 			//alert("你点了'是'按钮")
-	// 			$.ajax({
-	// 				url: "/management?method=delete&id=" + id,
-	// 				type : "get",
-	// 				dataType:"json",
-	// 				success : function(json){
-	// 					if(json.result=="ok"){
-	// 						window.location.reload();
-	// 					}else{
-	// 						Swal.fire({
-	// 							title : json.result
-	// 						})
-	// 					}
-	// 					//console.log(json);
-	// 				}
-	// 			})
-	// 		}
-	// 	})
-	// }
+	function del(delObj){
+		var id = $(delObj).attr("data-id");
+		var pname = $(delObj).attr("data-pname");
+		var preview = $(delObj).attr("data-preview");
+		Swal.fire({
+			title : "确定要删除[" + pname + "]油画吗?",
+			html : "<img src='" + preview + "' style='width:361px;height:240px'>",
+			showCancelButton: true,
+			confirmButtonText: "是",
+			cancelButtonText: "否"
+		}).then(function(result){
+			if(result.value==true){
+				//alert("你点了'是'按钮")
+				$.ajax({
+					url: "management?method=delete&id=" + id,
+					type : "get",
+					dataType:"json",
+					success : function(json){
+						if(json.result=="ok"){
+							window.location.reload();
+						}else{
+							Swal.fire({
+								title : json.result
+							})
+						}
+						//console.log(json);
+					}
+				})
+			}
+		})
+	}
 </script>
 </head>
 <body>
@@ -88,7 +87,7 @@
 					<td>
 						<a class="oplink" data-preview="${painting.preview}" data-pname="${painting.pname}" href="javascript:void(0)" onclick="showPreview(this)">预览</a>
 						<a class="oplink" href="management?method=show_update&id=${painting.id}">修改</a>
-						<a class="oplink" href="#" >删除</a>
+						<a class="oplink" href="javascript:void(0)" data-id="${painting.id }" data-pname="${painting.pname }" data-preview="${painting.preview }" onclick="del(this) ">删除</a>
 					</td>
 				</tr>
 				</c:forEach>

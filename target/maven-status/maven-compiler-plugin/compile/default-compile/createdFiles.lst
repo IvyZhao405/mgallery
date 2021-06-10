@@ -1,7 +1,0 @@
-com/imooc/mgallery/entity/Painting.class
-com/imooc/mgallery/utils/XmlDataSource.class
-com/imooc/mgallery/utils/PageModel.class
-com/imooc/mgallery/dao/PaintingDao.class
-com/imooc/mgallery/service/PaintingService.class
-com/imooc/mgallery/controller/PaintingController.class
-com/imooc/mgallery/controller/ManagementController.class
